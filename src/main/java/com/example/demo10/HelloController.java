@@ -23,6 +23,8 @@ public class HelloController implements Initializable
 {
 @FXML
 ImageView XO;
+    @FXML
+    ImageView  conect4;
     private Parent root;
     private Stage stage;
     private Scene scene;
@@ -44,6 +46,7 @@ ImageView XO;
         }
     }
 
+
    public void changescenes(ActionEvent e) throws IOException {
 
 
@@ -57,9 +60,28 @@ ImageView XO;
     stage.setScene(scene);
     stage.show();
     }
+    public void changescenes3(MouseEvent event){
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("game2.FXML"));
+            root = loader.load();
+
+
+            stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         XO.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> changescenes2(event));
+        conect4.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> changescenes3(event));
     }
 }
