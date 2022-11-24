@@ -47,7 +47,7 @@ ImageView XO;
     }
 
 
-   public void changescenes(ActionEvent e) throws IOException {
+   public void changeScenes(ActionEvent e) throws IOException {
 
 
     FXMLLoader loader=new FXMLLoader(getClass().getResource("game1.FXML"));
