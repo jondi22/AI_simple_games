@@ -18,7 +18,7 @@
       <Button layoutX="727.0" layoutY="341.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="238.0" text="Button" />
       <RadioButton layoutX="704.0" layoutY="110.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="122.0" text="RadioButton" textFill="WHITE" />
       <RadioButton layoutX="826.0" layoutY="110.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="122.0" text="RadioButton" textFill="WHITE" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="514.0" layoutX="14.0" layoutY="31.0" stroke="BLACK" strokeType="INSIDE" width="688.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="514.0" layoutX="14.0" layoutY="23.0" opacity="0.41" stroke="BLACK" strokeType="INSIDE" width="688.0" />
       <Circle fill="WHITE" layoutX="606.0" layoutY="91.0" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fill="WHITE" layoutX="606.0" layoutY="163.0" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fill="WHITE" layoutX="606.0" layoutY="244.0" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
