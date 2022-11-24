@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo10.Game3moreover">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="566.0" prefWidth="806.0">
+         <children>
+            <ImageView fitHeight="584.0" fitWidth="1050.0" layoutX="-30.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/games.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="72.0" fitWidth="116.0" layoutX="47.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/190238.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="72.0" fitWidth="116.0" layoutX="908.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/190239.png" />
+               </image>
+            </ImageView>
+            <ImageView blendMode="SCREEN" fitHeight="260.0" fitWidth="746.0" layoutX="137.0" layoutY="495.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/rainbow-line.gif" />
+               </image>
+            </ImageView>
+            <Canvas height="200.0" layoutX="67.0" layoutY="32.0" width="200.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
