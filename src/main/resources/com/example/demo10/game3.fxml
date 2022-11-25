@@ -2,11 +2,11 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="566.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo10.Game3">
    <children>
@@ -15,22 +15,25 @@
             <Image url="@../../../img/games.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="72.0" fitWidth="116.0" layoutX="47.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="back" fitHeight="72.0" fitWidth="116.0" layoutX="47.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/190238.png" />
          </image>
       </ImageView>
-      <RadioButton layoutX="147.0" layoutY="139.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="203.0" text="Manhattan distance" textFill="#f300ff">
+      <RadioButton fx:id="hui1" layoutX="147.0" layoutY="139.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="203.0" selected="true" text="Manhattan distance" textFill="#f300ff">
+         <font>
+            <Font name="Book Antiqua Bold" size="16.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="heur" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="hui2" layoutX="420.0" layoutY="139.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="288.0" text="the number of tiles out of place" textFill="#f300ff" toggleGroup="$heur">
          <font>
             <Font name="Book Antiqua Bold" size="16.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="420.0" layoutY="139.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="288.0" text="the number of tiles out of place" textFill="#f300ff">
-         <font>
-            <Font name="Book Antiqua Bold" size="16.0" />
-         </font>
-      </RadioButton>
-      <ImageView fitHeight="72.0" fitWidth="116.0" layoutX="908.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="next" fitHeight="72.0" fitWidth="116.0" layoutX="908.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/190239.png" />
          </image>
@@ -45,12 +48,15 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <RadioButton layoutX="420.0" layoutY="323.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="288.0" text="A* algorithm" textFill="#f300ff">
+      <RadioButton fx:id="algo2" layoutX="420.0" layoutY="323.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="288.0" text="A* algorithm" textFill="#f300ff">
          <font>
             <Font name="Book Antiqua Bold" size="16.0" />
          </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="algo" />
+         </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="147.0" layoutY="323.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="203.0" text="Greedy algorithm" textFill="#f300ff">
+      <RadioButton fx:id="algo1" layoutX="147.0" layoutY="323.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="203.0" selected="true" text="Greedy algorithm" textFill="#f300ff" toggleGroup="$algo">
          <font>
             <Font name="Book Antiqua Bold" size="16.0" />
          </font>

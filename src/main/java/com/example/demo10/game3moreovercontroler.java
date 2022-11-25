@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Game3 implements Initializable {
+public class game3moreovercontroler implements Initializable {
     @FXML
     ImageView back;
     @FXML

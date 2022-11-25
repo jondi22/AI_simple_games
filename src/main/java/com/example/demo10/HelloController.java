@@ -19,6 +19,8 @@ public class HelloController implements Initializable {
     ImageView XO;
     @FXML
     ImageView conect4;
+    @FXML
+    ImageView puzzle;
     private Parent root;
     private Stage stage;
     private Scene scene;
@@ -56,11 +58,28 @@ public class HelloController implements Initializable {
             e.printStackTrace();
         }
     }
+    public void goTo8puzzel(MouseEvent event) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("game3.FXML"));
+            root = loader.load();
+
+
+            stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         XO.addEventHandler(MouseEvent.MOUSE_CLICKED, this::changeScenes2);
         conect4.addEventHandler(MouseEvent.MOUSE_CLICKED, this::goToConnect4Game);
+        puzzle.addEventHandler(MouseEvent.MOUSE_CLICKED,this::goTo8puzzel);
     }
 }
