@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo10.game3moreovercontroler">
+<AnchorPane prefHeight="52.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo10.game3moreovercontroler">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="566.0" prefWidth="806.0">
          <children>
@@ -30,7 +30,7 @@
                   <Image url="@../../../img/190239.png" />
                </image>
             </ImageView>
-            <ImageView blendMode="SCREEN" fitHeight="260.0" fitWidth="746.0" layoutX="137.0" layoutY="495.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView blendMode="SCREEN" fitHeight="260.0" fitWidth="746.0" layoutX="137.0" layoutY="480.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../img/rainbow-line.gif" />
                </image>
@@ -47,47 +47,47 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="po1" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;">
+                  <Label fx:id="po1" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" visible="false">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="po2" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" GridPane.columnIndex="1">
+                  <Label fx:id="po2" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" visible="false" GridPane.columnIndex="1">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="po3" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" GridPane.columnIndex="2">
+                  <Label fx:id="po3" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" visible="false" GridPane.columnIndex="2">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="po4" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" GridPane.rowIndex="1">
+                  <Label fx:id="po4" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" visible="false" GridPane.rowIndex="1">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="po5" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="po5" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="po6" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Label fx:id="po6" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="po7" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" GridPane.rowIndex="2">
+                  <Label fx:id="po7" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" visible="false" GridPane.rowIndex="2">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="po8" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Label fx:id="po8" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Label fx:id="po9" alignment="CENTER" prefHeight="110.0" prefWidth="278.0" style="-fx-background-color: white;" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -112,61 +112,71 @@
                   <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                </padding>
                <children>
-                  <Button fx:id="button1" mnemonicParsing="false" prefHeight="131.0" prefWidth="258.0" text="1">
+                  <Button fx:id="button1" mnemonicParsing="false" onAction="#move" prefHeight="131.0" prefWidth="258.0" text="1">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button2" mnemonicParsing="false" prefHeight="131.0" prefWidth="258.0" text="2" GridPane.columnIndex="1">
+                  <Button fx:id="button2" mnemonicParsing="false" onAction="#move" prefHeight="131.0" prefWidth="258.0" text="2" GridPane.columnIndex="1">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button3" mnemonicParsing="false" prefHeight="131.0" prefWidth="258.0" text="3" GridPane.columnIndex="2">
+                  <Button fx:id="button3" mnemonicParsing="false" onAction="#move" prefHeight="131.0" prefWidth="258.0" text="3" GridPane.columnIndex="2">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button5" mnemonicParsing="false" prefHeight="131.0" prefWidth="258.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="button5" mnemonicParsing="false" onAction="#move" prefHeight="131.0" prefWidth="258.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button4" mnemonicParsing="false" prefHeight="131.0" prefWidth="258.0" text="4" GridPane.rowIndex="1">
+                  <Button fx:id="button4" mnemonicParsing="false" onAction="#move" prefHeight="131.0" prefWidth="258.0" text="4" GridPane.rowIndex="1">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button6" mnemonicParsing="false" prefHeight="131.0" prefWidth="258.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Button fx:id="button6" mnemonicParsing="false" onAction="#move" prefHeight="131.0" prefWidth="258.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button7" mnemonicParsing="false" prefHeight="131.0" prefWidth="258.0" text="7" GridPane.rowIndex="2">
+                  <Button fx:id="button7" mnemonicParsing="false" onAction="#move" prefHeight="131.0" prefWidth="258.0" text="7" GridPane.rowIndex="2">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button8" mnemonicParsing="false" prefHeight="131.0" prefWidth="258.0" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Button fx:id="button8" mnemonicParsing="false" onAction="#move" prefHeight="131.0" prefWidth="258.0" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonempty" mnemonicParsing="false" prefHeight="131.0" prefWidth="258.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Button fx:id="buttonempty" mnemonicParsing="false" onAction="#move" prefHeight="131.0" prefWidth="258.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
                </children>
             </GridPane>
-            <Label layoutX="137.0" layoutY="14.0" prefHeight="98.0" prefWidth="456.0" text="Choose firstly the start point" textFill="#ffffffce">
+            <Label fx:id="header" layoutX="137.0" layoutY="14.0" prefHeight="98.0" prefWidth="726.0" text="Choose firstly the start point" textFill="#ffffffce">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>
             </Label>
-            <ImageView fx:id="reload" fitHeight="89.0" fitWidth="90.0" layoutX="475.0" layoutY="451.0" pickOnBounds="true" preserveRatio="true">
+            <Label fx:id="huer" alignment="CENTER" layoutX="611.0" layoutY="31.0" prefHeight="38.0" prefWidth="98.0" style="-fx-background-color: white;" visible="false">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="algo" alignment="CENTER" layoutX="762.0" layoutY="31.0" prefHeight="38.0" prefWidth="98.0" style="-fx-background-color: white;" visible="false">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="reload" fitHeight="98.0" fitWidth="98.0" layoutX="676.0" layoutY="419.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                <image>
-                  <Image url="@../../../img/reload.png" />
+                  <Image url="@../../../img/190238.png" />
                </image>
             </ImageView>
          </children>

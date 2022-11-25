@@ -24,6 +24,7 @@ public class HelloController implements Initializable {
     private Parent root;
     private Stage stage;
     private Scene scene;
+    int [][]xxx=new int[3][3];
 
     public void changeScenes2(MouseEvent event) {
 
@@ -81,5 +82,6 @@ public class HelloController implements Initializable {
         XO.addEventHandler(MouseEvent.MOUSE_CLICKED, this::changeScenes2);
         conect4.addEventHandler(MouseEvent.MOUSE_CLICKED, this::goToConnect4Game);
         puzzle.addEventHandler(MouseEvent.MOUSE_CLICKED,this::goTo8puzzel);
+
     }
 }

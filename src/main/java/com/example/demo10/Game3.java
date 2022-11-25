@@ -23,6 +23,7 @@ public class Game3 implements Initializable {
     RadioButton algo1;
     @FXML
     RadioButton hui1;
+
     private Parent root;
     private Stage stage;
     private Scene scene;
@@ -49,7 +50,13 @@ public class Game3 implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("game3moreover.fxml"));
             root = loader.load();
-
+            game3moreovercontroler control=loader.getController();
+            if (algo1.isSelected())control.algo.setText("algo1");
+            else control.algo.setText("algo2");
+            if (hui1.isSelected())control.huer.setText("huer1");
+            else control.huer.setText("huer2");
+            control.huer.setVisible(false);
+            control.algo.setVisible(false);
 
             stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
 
