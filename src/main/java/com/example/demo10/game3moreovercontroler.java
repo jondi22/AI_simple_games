@@ -70,41 +70,51 @@ public class game3moreovercontroler implements Initializable {
     public void Startalgo() throws InterruptedException {
         System.out.print("hello");
         PriorityQueue<a8puzzle> priority=new PriorityQueue<a8puzzle>();
-        List<a8puzzle> open = new ArrayList<a8puzzle>();
+
+        List<a8puzzle> openlist = new ArrayList<a8puzzle>();
         List<a8puzzle> closed = new ArrayList<a8puzzle>();
-        open.add(curr1);
+
         curr1.cost=hur(curr1);
         priority.add(curr1);
+        openlist.add(curr1);
+
         //while (!open.isEmpty()) {
             if (algo.getText()=="algo1") {
 
-                while (!open.isEmpty()){
-                    int count=0;
 
-                if (open.isEmpty()){System.out.print("no sol");return;}
-                a8puzzle n=priority.poll();
-                if(n.cost==0)return;
-                    for (int gg=0;gg<3;gg++){
-                        for (int kk=0;kk<3;kk++){
-                            labelarray[count].setText(""+n.grid[gg][kk]);
-                            if(n.grid[gg][kk]==9)labelarray[count].setVisible(false);
+
+
+
+
+
+
+                while (true) {
+                    if(priority.isEmpty()){ System.out.print("nosoltion"); return;}
+                    int count = 0;
+                    a8puzzle n=priority.peek();
+                    priority.clear();
+                 for (int gg = 0; gg < 3; gg++) {
+                        for (int kk = 0; kk < 3; kk++) {
+                            labelarray[count].setText("" + n.grid[gg][kk]);
+                            if (n.grid[gg][kk] == 9) labelarray[count].setVisible(false);
                             else labelarray[count++].setVisible(true);
                         }
                     }
-                    System.out.print("heeeeloo");
-                    Thread.sleep(2000);
-                a8puzzle[] s=n.makechildren(n);
-                for(int i=0;i<s.length;i++){
-                    if(!open.contains(s[i])&&!closed.contains(s[i])){
+                 Thread.sleep(2000);
+                    if (n.cost==0)return;
+                    a8puzzle []s=n.makechildren(n);
+                    for (int i=0;i<s.length;i++){
                         s[i].cost=hur(s[i]);
-                        priority.add(s[i]);
-                        s[i].parent=n;
-                        open.add(s[i]);
 
+                        if (!priority.contains(s[i]) && !closed.contains(s[i])) {
+                            s[i].parent=n;
+                            priority.add(s[i]);
+
+                        }
+                        priority.remove(n);
+                        closed.add(n);
                     }
                 }
-                open.remove(n);
-                closed.add(n);}
 
             } else {
 
