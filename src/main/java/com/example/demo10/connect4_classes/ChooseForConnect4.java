@@ -85,13 +85,10 @@ public class ChooseForConnect4 implements Initializable {
         vsHuman.addEventHandler(MouseEvent.MOUSE_CLICKED, (mouseEvent) -> {
 
             selectionMode = VS_HUMAN;
-            //vsHuman.setVisible(false);
             easyButton.setDisable(true);
             mediumButton.setDisable(true);
             hardButton.setDisable(true);
 
-
-            //vsComputer.setVisible(true);
 
 
         });
@@ -99,13 +96,10 @@ public class ChooseForConnect4 implements Initializable {
         vsComputer.addEventHandler(MouseEvent.MOUSE_CLICKED, (mouseEvent) -> {
 
             selectionMode = VS_COMPUTER;
-            //vsComputer.setVisible(false);
             easyButton.setDisable(false);
             mediumButton.setDisable(false);
             hardButton.setDisable(false);
 
-
-            //vsHuman.setVisible(true);
 
 
         });
