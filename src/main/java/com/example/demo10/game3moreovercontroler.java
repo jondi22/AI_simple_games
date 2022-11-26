@@ -17,8 +17,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.LinkedList;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import static javafx.geometry.Pos.CENTER;
 
@@ -52,74 +52,90 @@ public class game3moreovercontroler implements Initializable {
     Button []buttonarray;
     Label [] labelarray;
     int [][] curr=new int[3][3];
+    a8puzzle curr1=new a8puzzle(curr);
 
     int [][] goal=new int[3][3];
 
+    a8puzzle goal1=new a8puzzle(goal);
 
 
 
-    public int[][][] makechildren(int [][]curr){
-        int posx,posy;
-        int [][][] children=new int[4][3][3];
-        for (int i=0;i<3;i++){
-            for (int j=0;j<3;j++){
-                if (curr[i][j]==9){
-                    posy=i;
-                    posx=j;
-                }
-            }
-        }
-
-
-        return null;
-    }
 
     private Parent root;
     private Stage stage;
     private Scene scene;
     int algo1;
     int huer1;
-    public void Startalgo(){
 
-        for (int i=0;i<3;i++){
-            for(int j=0;j<3;j++)
-                System.out.print(curr[i][j]+" ");
-            System.out.print("\n");
-        }
-        System.out.print("\n");
+    public void Startalgo() throws InterruptedException {
+        System.out.print("hello");
+        PriorityQueue<a8puzzle> priority=new PriorityQueue<a8puzzle>();
+        List<a8puzzle> open = new ArrayList<a8puzzle>();
+        List<a8puzzle> closed = new ArrayList<a8puzzle>();
+        open.add(curr1);
+        curr1.cost=hur(curr1);
+        priority.add(curr1);
+        //while (!open.isEmpty()) {
+            if (algo.getText()=="algo1") {
 
-        for (int i=0;i<3;i++){
-            for(int j=0;j<3;j++)
-                System.out.print(goal[i][j]+" ");
-            System.out.print("\n");
-        }
+                while (!open.isEmpty()){
+                    int count=0;
 
-        System.out.print("\n"+manhatendis());
-        System.out.print("\n"+numberoftiles());
+                if (open.isEmpty()){System.out.print("no sol");return;}
+                a8puzzle n=priority.poll();
+                if(n.cost==0)return;
+                    for (int gg=0;gg<3;gg++){
+                        for (int kk=0;kk<3;kk++){
+                            labelarray[count].setText(""+n.grid[gg][kk]);
+                            if(n.grid[gg][kk]==9)labelarray[count].setVisible(false);
+                            else labelarray[count++].setVisible(true);
+                        }
+                    }
+                    System.out.print("heeeeloo");
+                    Thread.sleep(2000);
+                a8puzzle[] s=n.makechildren(n);
+                for(int i=0;i<s.length;i++){
+                    if(!open.contains(s[i])&&!closed.contains(s[i])){
+                        s[i].cost=hur(s[i]);
+                        priority.add(s[i]);
+                        s[i].parent=n;
+                        open.add(s[i]);
 
+                    }
+                }
+                open.remove(n);
+                closed.add(n);}
+
+            } else {
+
+            }
+
+       // }
 
     }
 
-    public int manhatendis(){
-      int count=0;
-      for(int b=0;b<3;b++)
-      for(int a=0;a<3;a++)
-        for(int i=0;i<3;i++){
-            for (int j=0;j<3;j++){
-            if (curr[b][a]==goal[i][j])count+=Math.abs(b - i) + Math.abs(a - j);
-            }
+    public int hur(a8puzzle curr12){
+        if (huer1==1) {
+            int count = 0;
+            for (int b = 0; b < 3; b++)
+                for (int a = 0; a < 3; a++)
+                    for (int i = 0; i < 3; i++) {
+                        for (int j = 0; j < 3; j++) {
+                            if (curr12.grid[b][a] == goal1.grid[i][j]) count += Math.abs(b - i) + Math.abs(a - j);
+                        }
+                    }
+            return count;
         }
-        return count;
-    }
-    public int numberoftiles(){
-        int count=0;
-        for(int i=0;i<3;i++){
-            for (int j=0;j<3;j++){
-                if (curr[i][j]!=goal[i][j])count++;
+        else {
+            int count = 0;
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (curr12.grid[i][j] != goal1.grid[i][j]) count++;
+                }
             }
-        }
 
-        return count;
+            return count;
+        }
     }
 
     public void goback(MouseEvent event) {
@@ -143,14 +159,14 @@ public class game3moreovercontroler implements Initializable {
             flag=false;
         }
     }
-    public void gonext(MouseEvent event) {
+    public void gonext(MouseEvent event) throws InterruptedException {
         if (!flag && poscounter == 10) {
             flag = true;
             header.setText("secondly choose the goal point you want to reach");
             int counter=0;
             for (int i = 0; i < 3; i++) {
                 for (int j=0;j<3;j++)
-                curr[i][j] = Integer.parseInt(labelarray[counter++].getText());
+                curr1.grid[i][j] = Integer.parseInt(labelarray[counter++].getText());
 
             }
             restart(event);
@@ -158,7 +174,7 @@ public class game3moreovercontroler implements Initializable {
             int counter=0;
             for (int i = 0; i < 3; i++) {
                 for (int j=0;j<3;j++)
-                goal[i][j] = Integer.parseInt(labelarray[counter++].getText());
+                goal1.grid[i][j] = Integer.parseInt(labelarray[counter++].getText());
             }
             grid2.setVisible(false);
             header.setText("Starting ...");
@@ -205,7 +221,13 @@ public class game3moreovercontroler implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         back.addEventHandler(MouseEvent.MOUSE_CLICKED,this::goback);
-        next.addEventHandler(MouseEvent.MOUSE_CLICKED,this::gonext);
+        next.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            try {
+                gonext(event);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
         reload.addEventHandler(MouseEvent.MOUSE_CLICKED,this::restart);
         buttonarray=new Button[9];
         labelarray=new Label[9];
