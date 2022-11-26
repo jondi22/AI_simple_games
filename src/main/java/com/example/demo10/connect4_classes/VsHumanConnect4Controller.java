@@ -2,64 +2,77 @@ package com.example.demo10.connect4_classes;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.*;
+import javafx.geometry.Pos;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class VsHumanConnect4Controller implements Initializable {
-    private State state = new State();
-    public static final short FIRST_PLAYER = 0;
+    private State currentState = new State();
+    public static final short FIRST_PLAYER = -1;
     public static final short SECOND_PLAYER = 1;
 
     @FXML
-    private Pane gameGrid;
+    private GridPane gameGrid;
+
     private short whoWillTurnNext;
+
+    private GridPane[] grids = new GridPane[7];
+    private Circle[][] circles = new Circle[7][6];
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         whoWillTurnNext = FIRST_PLAYER;
-        createRectanglesWithHoles();
+        gameGrid.setBackground(new Background(new BackgroundFill(Color.DEEPSKYBLUE, null, null), null, null));
         for (int i = 0; i < 7; i++) {
-
-            gameGrid.getChildren().add(rectanglesList.get(i));
-
-        }
-
-
-    }
-    List<Shape> rectanglesList;
-
-    private void createRectanglesWithHoles(){
-        List<Shape> rectangles = new ArrayList<>();
-        for (int column = 0; column < 7; column++) {
-            Shape rectangle = new Rectangle(88, 540);
-
-            for (int row = 0; row < 6; row++) {
+            grids[i] = new GridPane();
+            grids[i].setVgap(10);
+            grids[i].setAlignment(Pos.CENTER);
+            grids[i].setId(Integer.toString(i));
+            for (int j = 0; j < 6; j++) {
                 Circle circle = new Circle();
-                circle.setRadius(40);
-                circle.setCenterX(40);
-                circle.setCenterY(40);
-                circle.setSmooth(true);
-
-                circle.setTranslateX(3);
-                circle.setTranslateY(86 * row + 3);
-
-                rectangle = Shape.subtract(rectangle, circle);
+                circle.setRadius(25);
+                circle.setCenterX(25);
+                circle.setCenterY(25);
+                circle.setFill(Color.WHITE);
+                grids[i].addRow(j);
+                grids[i].add(circle, 0, j);
+                circles[i][5 - j] = circle;
             }
-            rectangle.setTranslateX(column * 88);
-            rectangle.setFill(Color.BLUEVIOLET);
-            rectangles.add(rectangle);
+            gameGrid.add(grids[i], i, 0);
+
+
+            grids[i].addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> {
+                grids[Integer.parseInt(((GridPane) mouseEvent.getSource()).getId())]
+                        .setBackground(new Background(new BackgroundFill(Color.SKYBLUE, null, null), null, null));
+            });
+            grids[i].addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> {
+                grids[Integer.parseInt(((GridPane) mouseEvent.getSource()).getId())]
+                        .setBackground(new Background(new BackgroundFill(Color.DEEPSKYBLUE, null, null), null, null));
+            });
+            grids[i].addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+                int x = Integer.parseInt(((GridPane) mouseEvent.getSource()).getId());
+                if(currentState.getColumnsPointers()[x] == 6)return;
+                currentState.insertADisk(whoWillTurnNext, (short) x);
+                if (whoWillTurnNext == FIRST_PLAYER)
+                    circles[x][currentState.getLastMoveY()].setFill(Color.RED);
+                else
+                    circles[x][currentState.getLastMoveY()].setFill(Color.YELLOW);
+                whoWillTurnNext = (short) -whoWillTurnNext;
+                if(currentState.isAWinningState() == State.RED) System.out.println("Red wins");
+                else if(currentState.isAWinningState() == State.YELLOW) System.out.println("Yellow wins");
+
+            });
         }
 
 
-        this.rectanglesList = rectangles;
     }
+
 }

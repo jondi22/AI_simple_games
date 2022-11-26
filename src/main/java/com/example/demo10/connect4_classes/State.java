@@ -40,7 +40,7 @@ public class State {
     }
 
     public int isAWinningState(){
-        short color = disksArray[lastMoveY][lastMoveX];
+        short color = disksArray[lastMoveX][lastMoveY];
         int xAdjacentsNumber = 1;
         for(int i = lastMoveX + 1; i < 7 && i <= lastMoveX+3; i++){
             if(disksArray[i][lastMoveY] == color) xAdjacentsNumber++;
@@ -53,7 +53,7 @@ public class State {
         if(xAdjacentsNumber >= 4) return color;
 
         int yAdjacentsNumber = 1;
-        for(int i = lastMoveY + 1; i < 7 && i <= lastMoveY + 3; i++){
+        for(int i = lastMoveY + 1; i < 6 && i <= lastMoveY + 3; i++){
             if(disksArray[lastMoveX][i] == color) yAdjacentsNumber++;
             else break;
         }
@@ -65,22 +65,24 @@ public class State {
 
 
         int topRightDiagonalAdjacents = 1;
-        for(int i = lastMoveX + 1, j = lastMoveY + 1; i < 7 && i <= lastMoveX + 3 &&j <= lastMoveY + 3; i++, j++){
+        for(int i = lastMoveX + 1, j = lastMoveY + 1; i < 7 && j < 6 && i <= lastMoveX + 3 && j <= lastMoveY + 3; i++, j++){
             if(disksArray[i][j] == color) topRightDiagonalAdjacents++;
             else break;
         }
-        for(int i = lastMoveX - 1, j = lastMoveY - 1; i < 7 && i <= lastMoveX + 3 &&j <= lastMoveY + 3; i--, j--){
+        for(int i = lastMoveX - 1, j = lastMoveY - 1; i >= 0 && j >= 0 && i < 7 && i <= lastMoveX + 3 &&
+                j <= lastMoveY + 3; i--, j--){
             if(disksArray[i][j] == color) topRightDiagonalAdjacents++;
             else break;
         }
         if(topRightDiagonalAdjacents >= 4) return color;
 
         int topLeftDiagonalAdjacents = 1;
-        for(int i = lastMoveX - 1, j = lastMoveY + 1; i < 7 && i <= lastMoveX + 3 &&j <= lastMoveY + 3; i--, j++){
+        for(int i = lastMoveX - 1, j = lastMoveY + 1; i >= 0 && i < 7 && j < 6
+                && i <= lastMoveX + 3 &&j <= lastMoveY + 3; i--, j++){
             if(disksArray[i][j] == color) topLeftDiagonalAdjacents++;
             else break;
         }
-        for(int i = lastMoveX + 1, j = lastMoveY - 1; i < 7 && i <= lastMoveX + 3 &&j <= lastMoveY + 3; i++, j--){
+        for(int i = lastMoveX + 1, j = lastMoveY - 1; j >= 0 && i < 7 && i <= lastMoveX + 3 &&j <= lastMoveY + 3; i++, j--){
             if(disksArray[i][j] == color) topLeftDiagonalAdjacents++;
             else break;
         }
