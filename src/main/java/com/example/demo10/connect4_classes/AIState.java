@@ -51,8 +51,8 @@ public class AIState extends State{
                 if(k == 4) noOfBlockedFromThisMove++;
             }
 
-            if(lastMoveColor == RED)redPossibilities -= noOfBlockedFromThisMove;
-            else yellowPossibilities-= noOfBlockedFromThisMove;
+            if(lastMoveColor == RED) yellowPossibilities -= noOfBlockedFromThisMove;
+            else redPossibilities -= noOfBlockedFromThisMove;
             return getScore();
         }
     }
@@ -70,7 +70,7 @@ public class AIState extends State{
 
     }
 
-    private AIState instantiate(){
+    public AIState instantiate(){
         AIState aiState = new AIState();
         aiState.lastMoveX = this.lastMoveX;
         aiState.lastMoveY = this.lastMoveY;
