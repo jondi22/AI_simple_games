@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="505.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo10.connect4_classes.VsHumanConnect4Controller">
+<AnchorPane prefHeight="505.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
       <ImageView fitHeight="96.0" fitWidth="113.0" layoutX="719.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true">
          <image>

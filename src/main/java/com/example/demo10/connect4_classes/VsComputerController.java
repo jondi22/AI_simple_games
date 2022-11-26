@@ -11,13 +11,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
-public class VsHumanConnect4Controller implements Initializable {
-    private State currentState = new State();
-    public static final short FIRST_PLAYER = -1;
-    public static final short SECOND_PLAYER = 1;
+public class VsComputerController implements Initializable {
+    public VsComputerController(short difficulty) {
+        alphaBetaAlgorithm = new AlphaBetaAlgorithm(difficulty);
+    }
 
+    AIState currentState = new AIState();
+    AlphaBetaAlgorithm alphaBetaAlgorithm;
     @FXML
     private GridPane gameGrid;
 
@@ -29,7 +32,7 @@ public class VsHumanConnect4Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        whoWillTurnNext = FIRST_PLAYER;
+
         gameGrid.setBackground(new Background(new BackgroundFill(Color.DEEPSKYBLUE, null, null), null, null));
         for (int i = 0; i < 7; i++) {
             grids[i] = new GridPane();
@@ -60,14 +63,18 @@ public class VsHumanConnect4Controller implements Initializable {
             grids[i].addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
                 int x = Integer.parseInt(((GridPane) mouseEvent.getSource()).getId());
                 if(currentState.getColumnsPointers()[x] == 6)return;
-                currentState.insertADisk(whoWillTurnNext, (short) x);
-                if (whoWillTurnNext == FIRST_PLAYER)
-                    circles[x][currentState.getLastMoveY()].setFill(Color.RED);
-                else
-                    circles[x][currentState.getLastMoveY()].setFill(Color.YELLOW);
-                whoWillTurnNext = (short) -whoWillTurnNext;
-                if(currentState.isAWinningState() == State.RED) System.out.println("Red wins");
-                else if(currentState.isAWinningState() == State.YELLOW) System.out.println("Yellow wins");
+
+                currentState.insertADisk(State.RED, (short) x);
+                circles[x][currentState.getLastMoveY()].setFill(Color.RED);
+                if(currentState.isAWinningState() == State.RED){ System.out.println("Red wins"); return;}
+
+                currentState.insertADisk(State.YELLOW, (short) alphaBetaAlgorithm.nextMove(currentState.instantiate()));
+                circles[currentState.lastMoveX][currentState.getLastMoveY()].setFill(Color.YELLOW);
+                if(currentState.isAWinningState() == State.YELLOW){ System.out.println("Yellow wins"); return;}
+                if(currentState.tieGame()) System.out.println("It's tie");
+                System.out.println(Arrays.deepToString(currentState.disksArray));
+                System.out.println(Arrays.toString(currentState.columnsPointers));
+
 
             });
         }

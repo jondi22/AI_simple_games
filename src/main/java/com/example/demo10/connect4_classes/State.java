@@ -1,6 +1,12 @@
 package com.example.demo10.connect4_classes;
 
 public class State {
+    public State(){
+        disksArray = new short [7][6];
+        columnsPointers = new int [7];
+        lastMoveX = -1;
+        lastMoveY = -1;
+    }
     public static final short RED = -1;
     public static final short EMPTY = 0;
     public static final short YELLOW = 1;
@@ -9,8 +15,8 @@ public class State {
         return this.disksArray[lastMoveX][lastMoveY];
     }
 
-    protected short [][] disksArray = new short [7][6];
-    protected int [] columnsPointers = new int [7];
+    protected short [][] disksArray;
+    protected int [] columnsPointers;
 
     public short[][] getDisksArray() {
         return disksArray;
@@ -28,8 +34,8 @@ public class State {
         return lastMoveY;
     }
 
-    protected int lastMoveX = -1;
-    protected int lastMoveY = -1;
+    protected int lastMoveX;
+    protected int lastMoveY;
 
     public void insertADisk(short color, short column){
         if(columnsPointers[column] == 6) return;
