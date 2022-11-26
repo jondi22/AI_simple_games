@@ -3,7 +3,8 @@ package com.example.demo10;
 public class a8puzzle implements Comparable<a8puzzle>{
     int[][] grid;
     int cost=Integer.MAX_VALUE;
-    a8puzzle parent;
+    int level=0;
+    a8puzzle parent=null;
 
     public void printgrid(){
         for (int i=0;i<3;i++){
