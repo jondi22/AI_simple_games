@@ -106,6 +106,7 @@ public class VsComputerController implements Initializable {
                     Alert a = new Alert(Alert.AlertType.INFORMATION);
                     a.setContentText("You wins");
                     a.show();
+                    return;
                 }
 
                 currentState.insertADisk(State.YELLOW, (short) alphaBetaAlgorithm.nextMove(currentState.instantiate()));
@@ -114,6 +115,7 @@ public class VsComputerController implements Initializable {
                     Alert a = new Alert(Alert.AlertType.INFORMATION);
                     a.setContentText("Computer wins");
                     a.show();
+
                 }
                 if(currentState.tieGame()){
                     Alert a = new Alert(Alert.AlertType.INFORMATION);

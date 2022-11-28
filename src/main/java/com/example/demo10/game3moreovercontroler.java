@@ -142,7 +142,7 @@ public class game3moreovercontroler implements Initializable {
 //
 //        return s;
 //    }
-    public void Startalgo() {
+    public void startAlgo() {
 
 
         closed.clear();
@@ -347,13 +347,27 @@ public class game3moreovercontroler implements Initializable {
             grid1.setLayoutX(339);
             grid1.setLayoutY(107);
             reload.setVisible(false);
-            Startalgo();
+            startAlgo();
 
             while (!Solotion.isEmpty()) {
                 a8puzzle s = Solotion.get(0);
                 Solotion.remove(s);
                 delay(2000, () -> setLabelarray(s));
+                s.printgrid();
+                for (int i = 0; i < 2; i++)
+                    System.out.println();
             }
+
+            System.out.println("Tested are:-");
+            while (!closed.isEmpty()) {
+                a8puzzle s = closed.get(0);
+                closed.remove(s);
+                delay(2000, () -> setLabelarray(s));
+                s.printgrid();
+                for (int i = 0; i < 2; i++)
+                    System.out.println();
+            }
+
 //            for (int i=x.length;i>=0;i--){((a8puzzle)x[i]).printgrid();System.out.print("\n\n\n"); }
             header.setText("Finished");
 
