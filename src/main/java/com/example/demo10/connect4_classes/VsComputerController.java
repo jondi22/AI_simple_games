@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -101,12 +102,24 @@ public class VsComputerController implements Initializable {
 
                 currentState.insertADisk(State.RED, (short) x);
                 circles[x][currentState.getLastMoveY()].setFill(Color.RED);
-                if(currentState.isAWinningState() == State.RED){ System.out.println("Red wins"); return;}
+                if(currentState.isAWinningState() == State.RED){
+                    Alert a = new Alert(Alert.AlertType.INFORMATION);
+                    a.setContentText("You wins");
+                    a.show();
+                }
 
                 currentState.insertADisk(State.YELLOW, (short) alphaBetaAlgorithm.nextMove(currentState.instantiate()));
                 circles[currentState.lastMoveX][currentState.getLastMoveY()].setFill(Color.YELLOW);
-                if(currentState.isAWinningState() == State.YELLOW){ System.out.println("Yellow wins"); return;}
-                if(currentState.tieGame()) System.out.println("It's tie");
+                if(currentState.isAWinningState() == State.YELLOW){
+                    Alert a = new Alert(Alert.AlertType.INFORMATION);
+                    a.setContentText("Computer wins");
+                    a.show();
+                }
+                if(currentState.tieGame()){
+                    Alert a = new Alert(Alert.AlertType.INFORMATION);
+                    a.setContentText("It's a tie");
+                    a.show();
+                }
 
 
             });

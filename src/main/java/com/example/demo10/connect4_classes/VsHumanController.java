@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -92,9 +93,16 @@ public class VsHumanController implements Initializable {
                             null, null), null, null));
                 }
                 whoWillTurnNext = (short) -whoWillTurnNext;
-                if(currentState.isAWinningState() == State.RED) System.out.println("Red wins");
-                else if(currentState.isAWinningState() == State.YELLOW) System.out.println("Yellow wins");
-
+                if(currentState.isAWinningState() == State.RED) {
+                    Alert a = new Alert(Alert.AlertType.INFORMATION);
+                    a.setContentText("Red wins");
+                    a.show();
+                }
+                else if(currentState.isAWinningState() == State.YELLOW){
+                    Alert a = new Alert(Alert.AlertType.INFORMATION);
+                    a.setContentText("Yellow wins");
+                    a.show();
+                }
             });
 
         }
