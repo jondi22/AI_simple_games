@@ -1,5 +1,6 @@
 package com.example.demo10;
 
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -100,7 +101,47 @@ public class game3moreovercontroler implements Initializable {
         return (invCount % 2 == 0);
     }
 
-
+//    public static node solutionGready(node s,int whichH){
+//        PriorityQueue<node> closeList= new PriorityQueue<node>();
+//        PriorityQueue<node> openList= new PriorityQueue<node>();
+//        if (whichH==1){
+//            s.h=s.calcH();
+//        }
+//        else{
+//            s.h=s.calcH2();
+//        }
+//        s.fun=s.h;
+//
+//        openList.add(s);
+//        while (!openList.isEmpty()){
+//            node obj=openList.peek();
+//            if (obj.h==0){
+//                return obj;
+//            }
+//            obj.genChildren();
+//            for (node child : obj.children) {
+//                if (checkIfExistInPQ(openList, child)==null&&checkIfExistInPQ(closeList, child)==null) {
+//                    child.parent=obj;
+////               child.cost=obj.cost+1;
+//                    if (whichH==1){
+//                        child.h=child.calcH();
+//                    }
+//                    else{
+//                        child.h=child.calcH2();
+//                    }
+//                    child.fun=child.h;
+//                    openList.add(child);
+//
+//                }
+//
+//
+//            }
+//            openList.remove(obj);
+//            closeList.add(obj);
+//        }
+//
+//        return s;
+//    }
     public void Startalgo() {
 
 
@@ -113,13 +154,16 @@ public class game3moreovercontroler implements Initializable {
         if (isSolvable(curr1.grid))
             System.out.println("Solvable");
         else
-            System.out.println("Not Solvable");
+        {  System.out.print("not solvable");return;}
 
 
         if (algo.getText() == "algo1") {
+
+
             do {
+
                 if (priority.isEmpty()) {
-                    System.out.print("nosoltion");
+                    System.out.print("no soltion");
                     return;
                 }
                 a8puzzle n = priority.peek();
@@ -127,10 +171,7 @@ public class game3moreovercontroler implements Initializable {
                     while (n.parent != null) {
                         Solotion.add(n);
                         n = n.parent;
-                        System.out.print("hello");
-
                     }
-                    System.out.print("about to exit");
                     return;
                 }
 
@@ -145,13 +186,56 @@ public class game3moreovercontroler implements Initializable {
                         priority.add(s[i]);
 
                     }
+                }
                     priority.remove(n);
                     closed.add(n);
-                }
+
             } while (!priority.isEmpty());
 
         } else {
+            do {
 
+                if (priority.isEmpty()) {
+                    System.out.print("no soltion");
+                    return;
+                }
+                a8puzzle n = priority.peek();
+                if (n.cost == 0) {
+                    while (n.parent != null) {
+                        Solotion.add(n);
+                        n = n.parent;
+
+
+                    }
+                    return;
+                }
+
+
+                a8puzzle[] s = n.makechildren(n);
+                for (int i = 0; i < s.length; i++) {
+
+                    s[i].cost = hur2(s[i]);
+
+                    if (!priority.contains(s[i]) && !closed.contains(s[i])) {
+                        s[i].parent = n;
+                        priority.add(s[i]);
+                    }
+                    else {
+                        for (int i1=0;i1<closed.size();i1++){
+                            a8puzzle test = closed.get(i1);
+                            if (test==s[i]){
+                                if (test.cost>s[i].cost){
+                                    closed.remove(test);
+                                    priority.add(s[i]);
+                                }
+                            }
+                        }
+                    }
+                }
+                    priority.remove(n);
+                    closed.add(n);
+
+            } while (!priority.isEmpty());
         }
 
         // }
@@ -159,6 +243,7 @@ public class game3moreovercontroler implements Initializable {
     }
 
     public int hur(a8puzzle curr12) {
+
         if (huer1 == 1) {
             int count = 0;
             for (int b = 0; b < 3; b++)
@@ -178,6 +263,40 @@ public class game3moreovercontroler implements Initializable {
             }
 
             return count;
+        }
+    }
+    public int hur2(a8puzzle curr12) {
+
+        if (huer1 == 1) {
+            int count = 0;
+            for (int b = 0; b < 3; b++)
+                for (int a = 0; a < 3; a++)
+                    for (int i = 0; i < 3; i++) {
+                        for (int j = 0; j < 3; j++) {
+                            if (curr12.grid[b][a] == goal1.grid[i][j]) count += Math.abs(b - i) + Math.abs(a - j);
+                        }
+                    }
+            return count+curr12.level;
+        } else {
+            int count = 0;
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (curr12.grid[i][j] != goal1.grid[i][j]) count++;
+                }
+            }
+
+            return count+curr12.level;
+        }
+    }
+    public void setLabelarray(a8puzzle x){
+        int cp=0;
+        for (int i=0;i<3;i++){
+            for (int j=0;j<3;j++){
+                labelarray[cp].setText(""+x.grid[i][j]);
+                if (labelarray[cp].getText()=="9")labelarray[cp].setVisible(false);
+                else  labelarray[cp].setVisible(true);
+                cp++;
+            }
         }
     }
 
@@ -227,7 +346,11 @@ public class game3moreovercontroler implements Initializable {
             reload.setVisible(false);
             Startalgo();
 
-            System.out.print(Solotion.size() + "  " + closed.size());
+            while (!Solotion.isEmpty()){
+                a8puzzle s=Solotion.get(0);
+                Solotion.remove(s);
+                delay(2000,()->setLabelarray(s));
+            }
 //            for (int i=x.length;i>=0;i--){((a8puzzle)x[i]).printgrid();System.out.print("\n\n\n"); }
             header.setText("Finished");
 
@@ -261,7 +384,18 @@ public class game3moreovercontroler implements Initializable {
 
     }
 
-
+    public static void delay(long millis, Runnable continuation) {
+        Task<Void> sleeper = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try { Thread.sleep(millis); }
+                catch (InterruptedException e) { }
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded(event -> continuation.run());
+        new Thread(sleeper).start();
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         back.addEventHandler(MouseEvent.MOUSE_CLICKED, this::goback);

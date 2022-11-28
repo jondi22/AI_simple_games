@@ -35,18 +35,24 @@ public class a8puzzle implements Comparable<a8puzzle>{
                 }
             }
         }
-
+       //
         int counterab=0;
         if (posx+1!= 3)counterab++;
         if (posx-1!= -1)counterab++;
         if (posy+1!= 3)counterab++;
         if (posy-1!= -1)counterab++;
+
+        int v1=posx;
+        posx=posy;
+        posy=v1;
         a8puzzle [] children=new a8puzzle[counterab];
+
 
 
             a8puzzle child=new a8puzzle(curr.grid);
         int count=0;
         if (posx+1!=3){
+
             int v;
 
             v=child.grid[posx][posy];
@@ -82,6 +88,9 @@ public class a8puzzle implements Comparable<a8puzzle>{
             children[count++]=child;
 //            child.parent=curr;
 
+        }
+        for (int i=0;i<children.length;i++){
+            children[i].level=level+1;
         }
 
 
